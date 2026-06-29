@@ -16,6 +16,7 @@ let puntos=0;
 let tiempo=10;
 
 let intervalo;
+let velocidadTiempo=1000;
 
 function graficarGato(){
     graficarRectangulo(gatoX,gatoY,ANCHO_GATO,ALTO_GATO,"#ecad2e");
@@ -26,7 +27,7 @@ function graficarComida(){
 }
 
 function iniciarJuego(){
-    intervalo=setInterval(restarTiempo,1000)
+    intervalo=setInterval(restarTiempo,velocidadTiempo)
     graficarGato();
     aparecerComida();
 }
@@ -69,6 +70,10 @@ function detertarColission(){
         //alert("Atrapado")
         puntos=puntos+1;
         mostrarEnSpam("puntos",puntos);
+        if(puntos==6){
+            alert("El gato a comido lo suficiente")
+            clearInterval(intervalo);
+        }
         aparecerComida();   
     }
 }
@@ -81,5 +86,19 @@ function aparecerComida(){
 
 function restarTiempo(){
     tiempo=tiempo-1;
+    if(tiempo==0){
+            alert("GAME OVER")
+            clearInterval(intervalo);
+        }
     mostrarEnSpam("tiempo",tiempo);
+}
+
+function reiniciar(){
+    puntos=0
+    tiempo=10
+    mostrarEnSpam("tiempo",tiempo);
+    mostrarEnSpam("puntos",puntos);
+    gatoX=canvas.width/2-(ALTO_GATO);
+    gatoY=canvas.height/2-20;
+    iniciarJuego();
 }
