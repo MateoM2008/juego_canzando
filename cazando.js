@@ -55,4 +55,11 @@ function actualizarPantalla(){
     limpiarCanva();
     graficarGato();
     graficarComida();
+    detertarColission();
+}
+
+function detertarColission(){
+   if(comidaX + ANCHO_COMIDA > gatoX && comidaX < gatoX + ANCHO_GATO && comidaY + ALTO_COMIDA > gatoY && comidaY < gatoY + ALTO_GATO){
+        alert("Atrapado")     
+    }
 }
