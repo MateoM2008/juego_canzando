@@ -15,6 +15,8 @@ let comidaY=canvas.height-(ALTO_COMIDA);
 let puntos=0;
 let tiempo=10;
 
+let intervalo;
+
 function graficarGato(){
     graficarRectangulo(gatoX,gatoY,ANCHO_GATO,ALTO_GATO,"#ecad2e");
 }
@@ -24,6 +26,7 @@ function graficarComida(){
 }
 
 function iniciarJuego(){
+    intervalo=setInterval(restarTiempo,1000)
     graficarGato();
     aparecerComida();
 }
@@ -74,4 +77,9 @@ function aparecerComida(){
     comidaX=generarAleatoria(0,canvas.width-ANCHO_COMIDA);
     comidaY=generarAleatoria(0,canvas.height-ALTO_COMIDA);
     actualizarPantalla();
+}
+
+function restarTiempo(){
+    tiempo=tiempo-1;
+    mostrarEnSpam("tiempo",tiempo);
 }
