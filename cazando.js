@@ -12,6 +12,9 @@ let gatoY=canvas.height/2-20;
 let comidaX=canvas.width-(ANCHO_COMIDA);
 let comidaY=canvas.height-(ALTO_COMIDA);
 
+let puntos=0;
+let tiempo=10;
+
 function graficarGato(){
     graficarRectangulo(gatoX,gatoY,ANCHO_GATO,ALTO_GATO,"#ecad2e");
 }
@@ -22,7 +25,7 @@ function graficarComida(){
 
 function iniciarJuego(){
     graficarGato();
-    graficarComida();
+    aparecerComida();
 }
 
 function graficarRectangulo(x,y,ancho,alto,color){
@@ -60,6 +63,15 @@ function actualizarPantalla(){
 
 function detertarColission(){
    if(comidaX + ANCHO_COMIDA > gatoX && comidaX < gatoX + ANCHO_GATO && comidaY + ALTO_COMIDA > gatoY && comidaY < gatoY + ALTO_GATO){
-        alert("Atrapado")     
+        //alert("Atrapado")
+        puntos=puntos+1;
+        mostrarEnSpam("puntos",puntos);
+        aparecerComida();   
     }
+}
+
+function aparecerComida(){
+    comidaX=generarAleatoria(0,canvas.width-ANCHO_COMIDA);
+    comidaY=generarAleatoria(0,canvas.height-ALTO_COMIDA);
+    actualizarPantalla();
 }
